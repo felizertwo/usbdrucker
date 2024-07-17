@@ -5,9 +5,10 @@ workflows:
     environment:
       vars:
         JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
-      android:
-        api_level: 30
-        build_tools_version: 30.0.3
+      matrix:
+        - android:
+            api_level: 30
+            build_tools_version: 30.0.3
     scripts:
       - name: Install dependencies
         script: |
