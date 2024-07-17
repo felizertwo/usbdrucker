@@ -3,13 +3,15 @@ workflows:
     name: Android Build Workflow
     max_build_duration: 60
     environment:
-      vars:
-        JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
+      android:
+        api_level: 30
+        build_tools_version: 30.0.3
+      java:
+        version: 8
     scripts:
-      - name: Set up Android SDK
+      - name: Accept Licenses
         script: |
           yes | sdkmanager --licenses
-          sdkmanager "platforms;android-30" "build-tools;30.0.3"
       - name: Build Debug APK
         script: |
           ./gradlew assembleDebug
