@@ -1,0 +1,24 @@
+workflows:
+  android-workflow:
+    name: Android Build Workflow
+    max_build_duration: 60
+    environment:
+      vars:
+        JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
+      android:
+        api_level: 30
+        build_tools_version: 30.0.3
+    scripts:
+      - name: Install dependencies
+        script: |
+          sudo apt-get update
+          sudo apt-get install -y lib32stdc++6 lib32z1
+      - name: Build Debug APK
+        script: |
+          ./gradlew assembleDebug
+    artifacts:
+      - build/app/outputs/apk/debug/app-debug.apk
+    publishing:
+      email:
+        recipients:
+          - your-email@example.com
