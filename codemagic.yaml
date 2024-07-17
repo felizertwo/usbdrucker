@@ -4,11 +4,14 @@ workflows:
     max_build_duration: 60
     environment:
       vars:
-        JAVA_HOME: /opt/android-sdk-linux
+        JAVA_HOME: /Library/Java/JavaVirtualMachines/jdk1.8.0_292.jdk/Contents/Home
+        ANDROID_SDK_ROOT: /Users/builder/Library/Android/sdk
     scripts:
-      - name: Set up Android SDK
+      - name: Accept Licenses
         script: |
           yes | sdkmanager --licenses
+      - name: Set up Android SDK
+        script: |
           sdkmanager "platforms;android-30" "build-tools;30.0.3"
       - name: Build Debug APK
         script: |
