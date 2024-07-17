@@ -5,11 +5,13 @@ workflows:
     environment:
       vars:
         JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
-      matrix:
-        - android:
-            api_level: 30
-            build_tools_version: 30.0.3
+      tools:
+        android: true
     scripts:
+      - name: Set up Android SDK
+        script: |
+          yes | sdkmanager --licenses
+          sdkmanager "platforms;android-30" "build-tools;30.0.3"
       - name: Install dependencies
         script: |
           sudo apt-get update
